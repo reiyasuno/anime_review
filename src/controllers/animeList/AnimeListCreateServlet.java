@@ -12,6 +12,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import models.AnimeList;
+import models.Category;
+import models.Genre;
 import models.validators.AnimeListValidator;
 import utils.DBUtil;
 
@@ -42,19 +44,28 @@ public class AnimeListCreateServlet extends HttpServlet {
 
             AnimeList a = new AnimeList();
 
+            int genreId = Integer.parseInt(request.getParameter("genreid"));
+            Genre g = em.getReference(Genre.class, genreId);
+
+            int categoryId = Integer.parseInt(request.getParameter("categoryid"));
+            Category c = em.getReference(Category.class, categoryId);
+
             a.setTitle(request.getParameter("title"));
             a.setCompany(request.getParameter("company"));
             a.setStaff(request.getParameter("staff"));
             a.setSummary(request.getParameter("summary"));
+            a.setGenre(g);
+            a.setCategory(c);
             a.setMusic(request.getParameter("music"));
             a.setCast(request.getParameter("cast"));
+
 
             List<String> errors = AnimeListValidator.validate(a);
             if(errors.size() > 0) {
                 em.close();
 
                 request.setAttribute("_token", request.getSession().getId());
-                request.setAttribute("report", a);
+                request.setAttribute("animelist", a);
                 request.setAttribute("errors", errors);
 
                 RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/views/animelist/new.jsp");

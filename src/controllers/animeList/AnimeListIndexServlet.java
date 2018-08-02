@@ -12,6 +12,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import models.AnimeList;
+import models.Category;
+import models.Genre;
 import utils.DBUtil;
 
 /**
@@ -51,9 +53,19 @@ public class AnimeListIndexServlet extends HttpServlet {
         long anime_count = (long)em.createNamedQuery("getAnimeListCount", Long.class)
                                      .getSingleResult();
 
+
+        List<Genre> genres = em.createNamedQuery("getAllGenre",Genre.class)
+                               .getResultList();
+        response.getWriter().append(Integer.valueOf(genres.size()).toString());
+
+
+        List<Category> category = em.createNamedQuery("getAllCategory",Category.class)
+                               .getResultList();
+        response.getWriter().append(Integer.valueOf(category.size()).toString());
+
         em.close();
 
-        request.setAttribute("anime", anime);
+        request.setAttribute("animelist", anime);
         request.setAttribute("anime_count", anime_count);
         request.setAttribute("page", page);
         if(request.getSession().getAttribute("flush") != null) {

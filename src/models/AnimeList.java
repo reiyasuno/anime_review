@@ -1,6 +1,5 @@
 package models;
 
-import java.util.Locale.Category;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -10,10 +9,22 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.Lob;
 import javax.persistence.ManyToOne;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 
+@Table(name = "animelist")
+@NamedQueries({
+    @NamedQuery(
+        name = "getAllAnimeList",
+        query = "SELECT a From AnimeList a ORDER BY a.id DESC"
+        ),
+    @NamedQuery(
+            name = "getAnimeListCount",
+            query = "SELECT COUNT(a) FROM AnimeList AS a"
+            ),
+})
 @Entity
-@Table(name = "anime")
 public class AnimeList {
     @Id
     @Column(name = "id")
@@ -57,6 +68,7 @@ public class AnimeList {
     public void setId(Integer id) {
         this.id = id;
     }
+
 
     public Genre getGenre() {
         return genre;

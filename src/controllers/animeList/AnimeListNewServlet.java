@@ -9,6 +9,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import models.Category;
+import models.Genre;
+
 
 /**
  * Servlet implementation class AnimeListNewServlet
@@ -31,6 +34,8 @@ public class AnimeListNewServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 	    request.setAttribute("_token", request.getSession().getId());
+	    request.setAttribute("genre", new Genre());
+	    request.setAttribute("category", new Category());
 
 
         RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/views/animelist/new.jsp");

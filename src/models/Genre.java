@@ -3,10 +3,21 @@ package models;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.Table;
-
 @Entity
 @Table(name = "genre")
+@NamedQueries({
+    @NamedQuery(
+        name = "getAllGenre",
+        query = "SELECT g From Genre g ORDER BY g.id DESC"
+        ),
+    @NamedQuery(
+            name = "getGenreCount",
+            query = "SELECT COUNT(g) FROM Genre AS g"
+            ),
+})
 public class Genre {
     @Id
     @Column(name = "id")
