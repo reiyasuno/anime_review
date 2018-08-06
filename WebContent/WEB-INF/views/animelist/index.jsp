@@ -9,14 +9,14 @@
             </div>
         </c:if>
         <h2>アニメ　一覧</h2>
-        <div>
-        <table id="anime_list">
+
+        <br>
         <c:forEach var="anime" items="${animelist}" varStatus="status">
+        <table id="anime_list">
                 <tr class="row${status.count % 2 }">
             <tbody>
                 <tr>
-                    <th class="anime_title">タイトル</th>
-                    <td class="anime_title"><a href="<c:url value='/animelist/show?id=${anime.id}' />">${anime.title}</a></td>
+                    <td colspan="2" class="anime_title link_cell"><a class="title_link" href="<c:url value='/animelist/show?id=${anime.id}' />">${anime.title}</a></td>
                     <th class="genre_name">ジャンル</th>
                     <td class="genre_id">${anime.genre.name}</td>
                     <th class="category_name">カテゴリ</th>
@@ -40,10 +40,12 @@
                     <th class="anime_music">音楽</th>
                     <td colspan="2" class="anime_music">${anime.music}</td>
                 </tr>
-            </c:forEach>
             </tbody>
         </table>
-        </div>
+        <br>
+        </c:forEach>
+
+
 
 <div id="pagination">
             （全 ${anime_count} 件）<br />

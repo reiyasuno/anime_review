@@ -20,9 +20,9 @@ import javax.persistence.Table;
         query = "SELECT a From AnimeList a ORDER BY a.id DESC"
         ),
     @NamedQuery(
-            name = "getAnimeListCount",
-            query = "SELECT COUNT(a) FROM AnimeList AS a"
-            ),
+        name = "getAnimeListCount",
+        query = "SELECT COUNT(a) FROM AnimeList AS a"
+        )
 })
 @Entity
 public class AnimeList {

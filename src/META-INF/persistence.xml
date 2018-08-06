@@ -5,6 +5,8 @@
 		<class>models.AnimeList</class>
 		<class>models.Genre</class>
 		<class>models.Category</class>
+		<class>models.Comment</class>
+		<class>models.User</class>
 		<properties>
 			<property name="javax.persistence.jdbc.driver" value="com.mysql.jdbc.Driver"/>
 			<property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost/anime_review?useSSL=false&amp;useUnicode=true&amp;characterEncoding=utf8"/>
