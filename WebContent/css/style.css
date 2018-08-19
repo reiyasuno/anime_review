@@ -30,6 +30,16 @@ h2 {
     margin-bottom: 15px;
 }
 
+h3{
+	font-size: 24px;
+}
+
+hr{
+	border-width: 2px;
+   border-style: solid;
+   border-color: #000000;
+}
+
 li {
     margin-top: 10px;
     margin-bottom: 10px;
@@ -90,6 +100,16 @@ button {
     background-color:#00CC33;
 }
 
+.comment_cell {
+	borderline: none;
+}
+
+div.fbox{
+	position: absolute;
+	top: 10px;
+	right: 30px;
+	text-align: right;
+}
 
 #footer {
     text-align: center;

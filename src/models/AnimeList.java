@@ -22,6 +22,10 @@ import javax.persistence.Table;
     @NamedQuery(
         name = "getAnimeListCount",
         query = "SELECT COUNT(a) FROM AnimeList AS a"
+        ),
+    @NamedQuery(
+        name = "findAllAnimeListWithName",
+        query = "SELECT a FROM AnimeList a WHERE a.title LIKE :animelistName"
         )
 })
 @Entity

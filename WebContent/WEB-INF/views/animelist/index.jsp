@@ -9,6 +9,12 @@
             </div>
         </c:if>
         <h2>アニメ　一覧</h2>
+        <div class="fbox">
+            <form method="post" action="<c:url value='/animelist/index' />">
+            <input type="search" name="search_key" placeholder="キーワードを入力">
+            <button type="submit">検索</button>
+            </form>
+        </div>
 
         <br>
         <c:forEach var="anime" items="${animelist}" varStatus="status">

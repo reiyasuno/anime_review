@@ -35,7 +35,6 @@ public class AnimeListIndexServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
 
 	    EntityManager em = DBUtil.createEntityManager();
 
@@ -45,6 +44,7 @@ public class AnimeListIndexServlet extends HttpServlet {
         } catch(Exception e) {
             page = 1;
         }
+
         List<AnimeList> anime = em.createNamedQuery("getAllAnimeList", AnimeList.class)
                                   .setFirstResult(15 * (page - 1))
                                   .setMaxResults(15)
@@ -76,5 +76,38 @@ public class AnimeListIndexServlet extends HttpServlet {
         RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/views/animelist/index.jsp");
         rd.forward(request, response);
     }
+
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
+	    EntityManager em = DBUtil.createEntityManager();
+
+	    int page;
+        try{
+            page = Integer.parseInt(request.getParameter("page"));
+        } catch(Exception e) {
+            page = 1;
+        }
+
+	    String search_key = request.getParameter("search_key");
+
+        List<AnimeList> anime = em.createNamedQuery("findAllAnimeListWithName", AnimeList.class)
+                .setParameter("animelistName","%"+search_key+"%")
+                .setFirstResult(15 * (page - 1))
+                .setMaxResults(15)
+                .getResultList();
+
+        //request.setAttribute("animelistName", animelistName);
+        //response.sendRedirect("/anime_review/animelist/index");
+        request.setAttribute("animelist", anime);
+        request.setAttribute("anime_count", anime.size());
+        request.setAttribute("page", page);
+        if(request.getSession().getAttribute("flush") != null) {
+            request.setAttribute("flush", request.getSession().getAttribute("flush"));
+            request.getSession().removeAttribute("flush");
+        }
+
+        RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/views/animelist/index.jsp");
+        rd.forward(request, response);
+	}
 
 }
