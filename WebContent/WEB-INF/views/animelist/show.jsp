@@ -104,13 +104,13 @@
                         <c:out value="${i}" />&nbsp;
                     </c:when>
                     <c:otherwise>
-                        <a href="<c:url value='/animelist/show?id=${animelist.id}' />"><c:out value="${i}" /></a>&nbsp;
+                        <a href="<c:url value='/animelist/show?id=${animelist.id}&page=${i}' />"><c:out value="${i}" /></a>&nbsp;
                     </c:otherwise>
                 </c:choose>
             </c:forEach>
         </div>
 
-        <form method="POST" action="<c:url value='/comment/create' />" name="comment_form" onsubmit="return validateFormData()">
+        <form method="POST" action="<c:url value='/comment/create' />" name="comment_form">
             <label for="name">ニックネーム</label><br>
             <input type="text" name="name" value="${comment.name}" />
             <br /><br />
@@ -132,6 +132,9 @@
             		alert('ニックネームまたはコメントが入力されていません！');
             		return false;
             	}
+
+                console.log("こめんと");
+                console.error();
             }
         </script>
         </c:otherwise>

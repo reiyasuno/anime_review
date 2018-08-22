@@ -56,11 +56,24 @@ public class CommentCreateServlet extends HttpServlet {
             c.setCreated_at(currentTime);
             c.setUpdated_at(currentTime);
 
+            em.close();
+
             request.setAttribute("_token", request.getSession().getId());
             request.setAttribute("comment", c);
 
             response.sendRedirect("/anime_review/animelist/show?id=" + request.getParameter("id"));
         }
 	}
+
+	    private static void testdopost() {
+	    int postID = 12;
+	    String name = "namae";
+	    String contents = "namae";
+
+	    request = newRequest(postID, name, contents);
+	    response = newResponse(); //←ここはよくわからん doPost(request, response) }
+
+	}
+
 }
 

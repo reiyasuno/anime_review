@@ -65,6 +65,7 @@ public class AnimeListShowServlet extends HttpServlet {
             request.getSession().removeAttribute("flush");
         }
 
+
         RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/views/animelist/show.jsp");
         rd.forward(request, response);
 	 }
